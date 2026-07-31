@@ -1,0 +1,10 @@
+# 编译产生的文件
+*.exe
+*.obj
+*.o
+
+# 游戏运行记录
+best_record.dat
+
+# VS Code配置
+.vscode/
