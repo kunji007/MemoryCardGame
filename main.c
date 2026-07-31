@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <conio.h>
 #include <windows.h>
 #include <time.h>
@@ -50,7 +51,7 @@ void FlushBufferToScreen(void)
     WriteConsoleOutputW(hOut, backBuffer, bufferSize, writePos, &writeRect);
 }
 
-void RenderGame(GameData *game)
+void RenderGame(GameData *game, Player player)
 {
     ClearBackBuffer();
     int line = 0;
@@ -59,6 +60,11 @@ void RenderGame(GameData *game)
     wchar_t title[64];
     swprintf(title, 64, L"===== 记忆翻牌游戏  第 %d 关 =====", game->level);
     BufferPrint(0, line++, title, GAME_COLOR_HIGHLIGHT);
+
+    // 显示玩家名字
+    wchar_t playerInfo[64];
+    swprintf(playerInfo, 64, L"当前玩家：%S", player.name);
+    BufferPrint(0, line++, playerInfo, GAME_COLOR_NORMAL);
 
     // 状态栏
     wchar_t status[128];
@@ -165,7 +171,7 @@ int main(void)
 
     GameData game;
 
-    if(ShowMenu()==0)
+    if(ShowMenu(player)==0)
     {
         return 0;
     }
@@ -175,7 +181,7 @@ int main(void)
 
     while(1)
     {
-        RenderGame(&game);
+        RenderGame(&game , player);
 
         // ========== 通关处理分支 ==========
         if(game.game_win == 1)
@@ -262,7 +268,7 @@ int main(void)
                     Game_OpenCard(&game);
                     if(game.open_count == 2)
                     {
-                        RenderGame(&game);
+                        RenderGame(&game, player);
                         Sleep(600);
                         Game_CheckPair(&game);
                     }

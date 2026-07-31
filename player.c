@@ -6,7 +6,7 @@ void InputPlayerName(Player *player)
 {
     printf("请输入玩家名字:");
 
-    scanf("%s", player->name);
+    scanf("%31s", player->name);
 }
 
 

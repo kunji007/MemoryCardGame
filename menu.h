@@ -1,6 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 
-int ShowMenu();
+#include "player.h"
+
+int ShowMenu(Player player);
 
 #endif

@@ -7,14 +7,18 @@
 
 
 
-int ShowMenu()
+int ShowMenu(Player player)
 {
     while(1)
     {
         system("cls");
 
         printf("====================\n");
+        printf(" 当前玩家: %s\n", player.name);
+        printf("====================\n");
+
         printf("   记忆翻牌游戏\n");
+
         printf("====================\n");
 
         printf("1. 开始游戏\n");
