@@ -5,6 +5,7 @@
 #include <time.h>
 #include "memory_card.h"
 #include "menu.h"
+#include "player.h"
 
 #define CON_WIDTH  80
 #define CON_HEIGHT 30
@@ -145,7 +146,17 @@ void RenderGame(GameData *game)
 
 int main(void)
 {
+
+    
+
     system("chcp 65001 >nul");
+
+    Player player;
+
+    InputPlayerName(&player);
+
+    ShowPlayer(player);
+
     // 隐藏光标
     CONSOLE_CURSOR_INFO cursorInfo;
     cursorInfo.dwSize = 1;
