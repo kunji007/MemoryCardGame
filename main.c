@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <time.h>
 #include "memory_card.h"
+#include "menu.h"
 
 #define CON_WIDTH  80
 #define CON_HEIGHT 30
@@ -152,7 +153,13 @@ int main(void)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 
     GameData game;
-    Game_Init(&game, 1, 0);
+
+    if(ShowMenu()==0)
+    {
+        return 0;
+    }
+
+    Game_Init(&game,1,0);
     char key;
 
     while(1)
